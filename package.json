@@ -1,0 +1,23 @@
+{
+  "name": "@vaalentin/gl-program",
+  "version": "1.0.0",
+  "description": "WebGL program wrapper.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaalentin/gl-program.git"
+  },
+  "keywords": [
+    "WebGL"
+  ],
+  "author": "vaalentin <vaalentin@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vaalentin/gl-program/issues"
+  },
+  "homepage": "https://github.com/vaalentin/gl-program#readme",
+  "dependencies": {
+    "@vaalentin/gl-shader": "^1.0.0"
+  }
+}
