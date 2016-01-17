@@ -1,7 +1,7 @@
 {
   "name": "@vaalentin/gl-program",
-  "version": "1.0.1",
-  "description": "WebGL program wrapper.",
+  "version": "1.0.3",
+  "description": "WebGL program wrapper",
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run build",
