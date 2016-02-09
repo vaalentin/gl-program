@@ -7,31 +7,31 @@ export default class Program {
   /**
    * @constructs Program
    * @param {WebGLRenderingContext} gl
-   * @param {Shader|string} vert - vertex shader
-   * @param {Shader|string} frag - fragment shader
+   * @param {Shader|string} vertex - vertexex shader
+   * @param {Shader|string} fragment - fragmentment shader
    */
-  constructor(gl, vert, frag) {
+  constructor(gl, vertex, fragment) {
     this.gl = gl;
 
-    if(typeof vert === 'string') {
-      vert = new Shader(this.gl, this.gl.VERTEX_SHADER, vert);
+    if(typeof vertex === 'string') {
+      vertex = new Shader(this.gl, this.gl.VERTEX_SHADER, vertex);
     }
 
-    if(typeof frag === 'string') {
-      frag = new Shader(this.gl, this.gl.FRAGMENT_SHADER, frag);
+    if(typeof fragment === 'string') {
+      fragment = new Shader(this.gl, this.gl.FRAGMENT_SHADER, fragment);
     }
 
-    this.vertShader = vert;
-    this.fragShader = frag;
+    this.vertexShader = vertex;
+    this.fragmentShader = fragment;
 
     this.program = this.gl.createProgram();
 
-    this.gl.attachShader(this.program, this.vertShader.shader);
-    this.gl.attachShader(this.program, this.fragShader.shader);
+    this.gl.attachShader(this.program, this.vertexShader.shader);
+    this.gl.attachShader(this.program, this.fragmentShader.shader);
     this.gl.linkProgram(this.program);
 
     if(!this.gl.getProgramParameter(this.program, this.gl.LINK_STATUS)) {
-      throw('Error while linking program');
+      throw new Error('Error while linking program');
     }
 
     this._attributes = {};
@@ -64,6 +64,7 @@ export default class Program {
    */
   setAttributePointer(name) {
     const { location, size, type } = this._attributes[name];
+
     this.gl.vertexAttribPointer(location, size, type, false, 0, 0);
   }
 
@@ -154,16 +155,8 @@ export default class Program {
     this.gl.deleteProgram(this.program);
     this.program = null;
 
-    this.vertShader.dispose();
-    this.vertShader = null;
-
-    this.fragShader.dispose();
-    this.fragShader = null;
-
-    this._attributes = null;
-    this._uniforms = null;
-
-    this.gl = null;
+    this.vertexShader.dispose();
+    this.fragmentShader.dispose();
   }
 }
 

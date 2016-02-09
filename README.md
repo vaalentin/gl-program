@@ -1,10 +1,10 @@
-# @vaalentin/gl-program
+# GL Program
 
 WebGL program wrapper.
 
 ## Installation
 
-```
+```sh
 $ npm install --save @vaalentin/gl-program
 ```
 
@@ -17,38 +17,38 @@ import Program from '@vaalentin/gl-program';
 
 const program = new Program(gl,
   `
-  attribute vec3 aPos;
+  attribute vec3 aPosition;
 
   void main() {
-    gl_Position = vec4(aPos, 1.0);
+    gl_Position = vec4(aPosition, 1.0);
   }
   `,
   `
-  uniform vec3 uCol;
+  uniform vec3 uColor;
 
   void main() {
-    gl_FragColor = vec4(uCol, 1.0);
+    gl_FragColor = vec4(uColor, 1.0);
   }
   `
 );
 
-program.addAttribute('aPos', 3, gl.FLOAT);
-program.addUniform('uCol', gl.FLOAT_VEC3);
+program.addAttribute('aPosition', 3, gl.FLOAT);
+program.addUniform('uColor', gl.FLOAT_VEC3);
 
 vertsBuffer.bind();
-program.setAttributePointer('aPos');
+program.setAttributePointer('aPosition');
 
-program.setUniform('uCol', [1, 0, 0]);
+program.setUniform('uColor', [1, 0, 0]);
 ```
 
 ## API
 
-#### `program = new Program(gl, vert, frag)`
+#### `program = new Program(gl, vertex, fragment)`
 
 Create a new program, where:
 - `gl` is the [WebGL context](https://github.com/vaalentin/gl-context).
-- `vert` is the vertex shader. It can either be a [`Shader`](https://github.com/vaalentin/gl-shader) instance or a `string`.
-- `frag` is the fragment shader. It can either be a [`Shader`](https://github.com/vaalentin/gl-shader) instance or a `string`.
+- `vertex` is the vertex shader. It can either be a [`Shader`](https://github.com/vaalentin/gl-shader) instance or a `string`.
+- `fragment` is the fragment shader. It can either be a [`Shader`](https://github.com/vaalentin/gl-shader) instance or a `string`.
 
 #### `program.addAttribute(name, size, type)`
 
